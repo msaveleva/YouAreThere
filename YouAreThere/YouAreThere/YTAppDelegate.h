@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
 
-@interface YTAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
+@interface YTAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @end
