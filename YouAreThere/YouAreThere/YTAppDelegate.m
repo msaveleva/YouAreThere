@@ -12,7 +12,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-   
     return YES;
 }
 							
@@ -27,7 +26,12 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
-//    [self.locationManager startMonitoringSignificantLocationChanges];
+    sleep(3);
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    [notification setFireDate:nil];
+    [notification setAlertBody:@"Hi! It's LocalNotification!"];
+    notification.soundName = @"VOCALOID solo.caf";
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -43,6 +47,15 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"MyAlertView"
+                                                        message:@"Local notification was received"
+                                                       delegate:self cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView show];
 }
 
 @end

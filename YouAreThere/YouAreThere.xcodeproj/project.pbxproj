@@ -23,6 +23,7 @@
 		3F28218A184B536D00625362 /* YouAreThereTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F282189184B536D00625362 /* YouAreThereTests.m */; };
 		3F282194184B53BD00625362 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F282193184B53BD00625362 /* CoreLocation.framework */; };
 		3F282196184B5BAF00625362 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F282195184B5BAF00625362 /* MapKit.framework */; };
+		3F28219D184B81FA00625362 /* VOCALOID solo.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F28219C184B80F100625362 /* VOCALOID solo.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		3F282189184B536D00625362 /* YouAreThereTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YouAreThereTests.m; sourceTree = "<group>"; };
 		3F282193184B53BD00625362 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3F282195184B5BAF00625362 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3F28219C184B80F100625362 /* VOCALOID solo.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VOCALOID solo.caf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 		3F282164184B536D00625362 /* YouAreThere */ = {
 			isa = PBXGroup;
 			children = (
+				3F28219C184B80F100625362 /* VOCALOID solo.caf */,
 				3F28216D184B536D00625362 /* YTAppDelegate.h */,
 				3F28216E184B536D00625362 /* YTAppDelegate.m */,
 				3F282170184B536D00625362 /* Main.storyboard */,
@@ -237,6 +240,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F28219D184B81FA00625362 /* VOCALOID solo.caf in Resources */,
 				3F282177184B536D00625362 /* Images.xcassets in Resources */,
 				3F282169184B536D00625362 /* InfoPlist.strings in Resources */,
 				3F282172184B536D00625362 /* Main.storyboard in Resources */,
