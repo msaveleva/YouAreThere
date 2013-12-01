@@ -1,3 +1,4 @@
+
 //
 //  YTViewController.h
 //  YouAreThere
@@ -8,7 +9,10 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
-@interface YTViewController : UIViewController <CLLocationManagerDelegate>
+@interface YTViewController : UIViewController <CLLocationManagerDelegate, UIGestureRecognizerDelegate>
+
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end

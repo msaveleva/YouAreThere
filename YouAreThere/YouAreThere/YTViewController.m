@@ -10,7 +10,7 @@
 
 @interface YTViewController ()
 
-
+- (IBAction)saveDestinationLoc:(id)sender;
 
 @end
 
@@ -24,6 +24,10 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (IBAction)saveDestinationLoc:(id)sender {
+    NSLog(@"TAP!");
 }
 
 @end
