@@ -33,7 +33,10 @@
 }
 
 - (IBAction)saveDestinationLoc:(id)sender {
-    NSLog(@"TAP!");
+    CGPoint touchPoint = [sender locationInView:self.mapView];
+    CLLocationCoordinate2D location = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
+    NSLog(@"Location found from Map: %f %f",location.latitude,location.longitude);
+    
     [self.locationManager startUpdatingLocation];
 }
 
