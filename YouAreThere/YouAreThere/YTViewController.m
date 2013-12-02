@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Maria Saveleva. All rights reserved.
 //
 
-#define COORDINATES_DELTA 10
+#define COORDINATES_DELTA 15
 
 #import "YTViewController.h"
 
@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *location;
+@property (nonatomic) BOOL isNotified;
 
 - (IBAction)saveDestinationLoc:(id)sender;
 
@@ -28,6 +29,8 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.delegate = self;
+    
+    self.isNotified = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,6 +39,10 @@
 }
 
 - (IBAction)saveDestinationLoc:(id)sender {
+    if (self.isNotified) {
+        self.isNotified = NO;
+    }
+    
     CGPoint touchPoint = [sender locationInView:self.mapView];
     CLLocationCoordinate2D location = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
     CLLocation *userLocation = [[CLLocation alloc] initWithLatitude:location.latitude longitude:location.longitude];
@@ -47,6 +54,12 @@
 
 - (void)notifyAboutPlace
 {
+    if (self.isNotified) {
+        return;
+    }
+    
+    self.isNotified = YES;
+    
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     [notification setFireDate:nil];
     [notification setAlertBody:@"Hi! It's LocalNotification!"];
@@ -60,6 +73,9 @@
         NSInteger distance = [currentLocation distanceFromLocation:self.location];
         NSLog(@"DISTANCE: %d", distance);
         if (distance <= COORDINATES_DELTA) {
+            if (self.isNotified) {
+                return;
+            }
             [self notifyAboutPlace];
         }
     }
@@ -71,7 +87,6 @@
 {
     CLLocation *location = [locations lastObject];
     NSLog(@"Latitude: %f, longitude: %f", location.coordinate.latitude, location.coordinate.longitude);
-//    NSLog(@"Self lat: %f, lon: %f", self.location.latitude, self.location.longitude);
     
     [self checkIfCoorinatesAreEqual:location];
 }
