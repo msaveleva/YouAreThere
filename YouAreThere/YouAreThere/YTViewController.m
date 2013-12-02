@@ -16,8 +16,11 @@
 @property (nonatomic, strong) MKPointAnnotation *pin;
 @property (nonatomic, strong) CLLocation *location;
 @property (nonatomic) BOOL isNotified;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 
 - (IBAction)saveDestinationLoc:(id)sender;
+- (IBAction)cancelNotification:(id)sender;
+- (void)enableDisableCancelButton;
 
 @end
 
@@ -30,10 +33,12 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.delegate = self;
+    self.location = nil;
     self.pin = [[MKPointAnnotation alloc] init];
     self.pin.title = @"Get here";
     
     self.isNotified = NO;
+    [self enableDisableCancelButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,6 +61,23 @@
     [self.mapView addAnnotation:self.pin];
     
     [self.locationManager startUpdatingLocation];
+    [self enableDisableCancelButton];
+}
+
+- (IBAction)cancelNotification:(id)sender
+{
+    self.location = nil;
+    [self.mapView removeAnnotation:self.pin];
+    [self enableDisableCancelButton];
+}
+
+- (void)enableDisableCancelButton
+{
+    if (!self.location) {
+        self.cancelButton.enabled = NO;
+    } else {
+        self.cancelButton.enabled = YES;
+    }
 }
 
 - (void)notifyAboutPlace
