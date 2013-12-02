@@ -13,6 +13,7 @@
 @interface YTViewController ()
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) MKPointAnnotation *pin;
 @property (nonatomic, strong) CLLocation *location;
 @property (nonatomic) BOOL isNotified;
 
@@ -29,6 +30,8 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.delegate = self;
+    self.pin = [[MKPointAnnotation alloc] init];
+    self.pin.title = @"Get here";
     
     self.isNotified = NO;
 }
@@ -48,6 +51,9 @@
     CLLocation *userLocation = [[CLLocation alloc] initWithLatitude:location.latitude longitude:location.longitude];
     self.location = userLocation;
     NSLog(@"Location found from Map: %f %f",location.latitude,location.longitude);
+    
+    [self.pin setCoordinate:location];
+    [self.mapView addAnnotation:self.pin];
     
     [self.locationManager startUpdatingLocation];
 }
