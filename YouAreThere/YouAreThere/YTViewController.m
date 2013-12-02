@@ -69,6 +69,7 @@
     self.location = nil;
     [self.mapView removeAnnotation:self.pin];
     [self enableDisableCancelButton];
+    [self.locationManager stopUpdatingLocation];
 }
 
 - (void)enableDisableCancelButton
