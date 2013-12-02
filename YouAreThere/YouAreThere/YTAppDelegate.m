@@ -25,13 +25,6 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    
-    sleep(3);
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    [notification setFireDate:nil];
-    [notification setAlertBody:@"Hi! It's LocalNotification!"];
-    notification.soundName = @"VOCALOID solo.caf";
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
