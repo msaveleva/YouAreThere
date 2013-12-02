@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Maria Saveleva. All rights reserved.
 //
 
-#define COORDINATES_DELTA 0.000001
+#define COORDINATES_DELTA 10
 
 #import "YTViewController.h"
 
 @interface YTViewController ()
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic) CLLocationCoordinate2D location;
+@property (nonatomic, strong) CLLocation *location;
 
 - (IBAction)saveDestinationLoc:(id)sender;
 
@@ -38,7 +38,8 @@
 - (IBAction)saveDestinationLoc:(id)sender {
     CGPoint touchPoint = [sender locationInView:self.mapView];
     CLLocationCoordinate2D location = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
-    self.location = location;
+    CLLocation *userLocation = [[CLLocation alloc] initWithLatitude:location.latitude longitude:location.longitude];
+    self.location = userLocation;
     NSLog(@"Location found from Map: %f %f",location.latitude,location.longitude);
     
     [self.locationManager startUpdatingLocation];
@@ -46,7 +47,6 @@
 
 - (void)notifyAboutPlace
 {
-    sleep(3);
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     [notification setFireDate:nil];
     [notification setAlertBody:@"Hi! It's LocalNotification!"];
@@ -54,20 +54,14 @@
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
 
-- (void)checkIfCoorinatesAreEqual:(CLLocationCoordinate2D)currentCoordinates
+- (void)checkIfCoorinatesAreEqual:(CLLocation *)currentLocation
 {
-//    MKCoordinateRegion region;
-//    MKCoordinateSpan span;
-//    span.latitudeDelta = 0.0000001;
-//    span.longitudeDelta = 0.0000001;
-//    region.span = span;
-//    region.center = self.location;
-    
-    CGFloat latitudeDelta = abs(self.location.latitude - currentCoordinates.latitude);
-    CGFloat longitudeDelta = abs(self.location.longitude - currentCoordinates.longitude);
-    
-    if (latitudeDelta <= COORDINATES_DELTA && longitudeDelta <= COORDINATES_DELTA) {
-        [self notifyAboutPlace];
+    if (self.location) {
+        NSInteger distance = [currentLocation distanceFromLocation:self.location];
+        NSLog(@"DISTANCE: %d", distance);
+        if (distance <= COORDINATES_DELTA) {
+            [self notifyAboutPlace];
+        }
     }
 }
 
@@ -77,6 +71,9 @@
 {
     CLLocation *location = [locations lastObject];
     NSLog(@"Latitude: %f, longitude: %f", location.coordinate.latitude, location.coordinate.longitude);
+//    NSLog(@"Self lat: %f, lon: %f", self.location.latitude, self.location.longitude);
+    
+    [self checkIfCoorinatesAreEqual:location];
 }
 
 @end
