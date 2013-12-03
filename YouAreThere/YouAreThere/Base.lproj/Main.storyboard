@@ -9,25 +9,25 @@
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="YTViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Bek-zk-SNb"/>
-                        <viewControllerLayoutGuide type="bottom" id="aqd-I7-K2Y"/>
+                        <viewControllerLayoutGuide type="top" id="jus-Vj-Gzz"/>
+                        <viewControllerLayoutGuide type="bottom" id="gBC-gj-ymX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wiR-Nd-TQJ">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wiR-Nd-TQJ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="08b-hf-wYC" appends="YES" id="mrP-FI-3Um"/>
                                 </connections>
                             </mapView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="21L-JV-Ipc">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="21L-JV-Ipc">
                                 <rect key="frame" x="0.0" y="510" width="320" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDV-LX-sdl">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDV-LX-sdl">
                                         <rect key="frame" x="20" y="14" width="280" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Cancel notification">
@@ -39,10 +39,26 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="wDV-LX-sdl" firstAttribute="top" secondItem="21L-JV-Ipc" secondAttribute="top" constant="14" id="9rE-nM-boz"/>
+                                    <constraint firstAttribute="height" constant="58" id="LaY-Sz-frG"/>
+                                    <constraint firstAttribute="bottom" secondItem="wDV-LX-sdl" secondAttribute="bottom" constant="14" id="R2Q-no-f8q"/>
+                                    <constraint firstItem="wDV-LX-sdl" firstAttribute="leading" secondItem="21L-JV-Ipc" secondAttribute="leading" constant="20" id="XpJ-Ws-ioh"/>
+                                    <constraint firstAttribute="trailing" secondItem="wDV-LX-sdl" secondAttribute="trailing" constant="20" id="nIc-m1-wKj"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="21L-JV-Ipc" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="6P2-Zp-ylj"/>
+                            <constraint firstItem="gBC-gj-ymX" firstAttribute="top" secondItem="wiR-Nd-TQJ" secondAttribute="bottom" id="ApZ-FV-KGA"/>
+                            <constraint firstItem="wiR-Nd-TQJ" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="BTS-j6-SgB"/>
+                            <constraint firstAttribute="trailing" secondItem="21L-JV-Ipc" secondAttribute="trailing" id="bTo-7C-5Ab"/>
+                            <constraint firstItem="gBC-gj-ymX" firstAttribute="top" secondItem="21L-JV-Ipc" secondAttribute="bottom" id="nqu-F0-HiM"/>
+                            <constraint firstAttribute="trailing" secondItem="wiR-Nd-TQJ" secondAttribute="trailing" id="r1h-Mg-UIm"/>
+                            <constraint firstItem="wiR-Nd-TQJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="tAP-PT-Aqf"/>
+                        </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="08b-hf-wYC" appends="YES" id="6rf-h5-fRg"/>
                         </connections>
