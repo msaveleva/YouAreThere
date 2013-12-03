@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Maria Saveleva. All rights reserved.
 //
 
-#define COORDINATES_DELTA 15
+#define COORDINATES_DELTA 50
 
 #import "YTViewController.h"
 
@@ -55,7 +55,6 @@
     CLLocationCoordinate2D location = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
     CLLocation *userLocation = [[CLLocation alloc] initWithLatitude:location.latitude longitude:location.longitude];
     self.location = userLocation;
-    NSLog(@"Location found from Map: %f %f",location.latitude,location.longitude);
     
     [self.pin setCoordinate:location];
     [self.mapView addAnnotation:self.pin];
@@ -88,11 +87,11 @@
     }
     
     self.isNotified = YES;
-    
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     [notification setFireDate:nil];
     [notification setAlertBody:@"Hi! It's LocalNotification!"];
     notification.soundName = @"VOCALOID solo.caf";
+//    notification.soundName = UILocalNotificationDefaultSoundName;
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
 
@@ -115,7 +114,6 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     CLLocation *location = [locations lastObject];
-    NSLog(@"Latitude: %f, longitude: %f", location.coordinate.latitude, location.coordinate.longitude);
     
     [self checkIfCoorinatesAreEqual:location];
 }
