@@ -13,6 +13,8 @@
 
 @interface YTViewController ()
 
+@property (nonatomic) BOOL cancelMenuHidden;
+
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) MKPointAnnotation *pin;
 @property (nonatomic, strong) CLLocation *location;
@@ -43,6 +45,7 @@
     
     self.isNotified = NO;
     [self enableDisableCancelButton];
+    self.cancelMenuHidden = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,13 +93,16 @@
 
 - (void)showCancelMenu
 {
-    
-    [UIView animateWithDuration:CANCEL_ANIMATION animations:^{
-        CGPoint origin = CGPointMake(self.cancelView.frame.origin.x, self.cancelView.frame.origin.y - self.cancelView.frame.size.height);
-        CGRect frame = CGRectMake(0, 0, self.cancelView.frame.size.width, self.cancelView.frame.size.height);
-        frame.origin = origin;
-        self.cancelView.frame = frame;
-    }];
+    if (self.cancelMenuHidden) {
+        [UIView animateWithDuration:CANCEL_ANIMATION animations:^{
+            CGPoint origin = CGPointMake(self.cancelView.frame.origin.x, self.cancelView.frame.origin.y - self.cancelView.frame.size.height);
+            CGRect frame = CGRectMake(0, 0, self.cancelView.frame.size.width, self.cancelView.frame.size.height);
+            frame.origin = origin;
+            self.cancelView.frame = frame;
+        }];
+        
+        self.cancelMenuHidden = NO;
+    }
 }
 
 - (void)hideCancelMenu
@@ -107,6 +113,8 @@
         frame.origin = origin;
         self.cancelView.frame = frame;
     }];
+    
+    self.cancelMenuHidden = YES;
 }
 
 - (void)notifyAboutPlace
