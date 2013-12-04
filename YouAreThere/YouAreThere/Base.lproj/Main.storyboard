@@ -65,6 +65,7 @@
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="wDV-LX-sdl" id="1Ix-0E-g5N"/>
+                        <outlet property="cancelView" destination="21L-JV-Ipc" id="54f-SG-leg"/>
                         <outlet property="mapView" destination="wiR-Nd-TQJ" id="vqf-Ge-IVO"/>
                     </connections>
                 </viewController>

@@ -17,10 +17,13 @@
 @property (nonatomic, strong) CLLocation *location;
 @property (nonatomic) BOOL isNotified;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UIView *cancelView;
 
 - (IBAction)saveDestinationLoc:(id)sender;
 - (IBAction)cancelNotification:(id)sender;
 - (void)enableDisableCancelButton;
+- (void)showCancelMenu;
+- (void)hideCancelMenu;
 
 @end
 
@@ -39,6 +42,7 @@
     
     self.isNotified = NO;
     [self enableDisableCancelButton];
+    [self hideCancelMenu];
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,6 +65,8 @@
     
     [self.locationManager startUpdatingLocation];
     [self enableDisableCancelButton];
+    
+    [self showCancelMenu];
 }
 
 - (IBAction)cancelNotification:(id)sender
@@ -69,6 +75,8 @@
     [self.mapView removeAnnotation:self.pin];
     [self enableDisableCancelButton];
     [self.locationManager stopUpdatingLocation];
+    
+    [self hideCancelMenu];
 }
 
 - (void)enableDisableCancelButton
@@ -78,6 +86,22 @@
     } else {
         self.cancelButton.enabled = YES;
     }
+}
+
+- (void)showCancelMenu
+{
+    CGPoint origin = CGPointMake(self.cancelView.frame.origin.x, self.cancelView.frame.origin.y - self.cancelView.frame.size.height);
+    CGRect frame = CGRectMake(0, 0, self.cancelView.frame.size.width, self.cancelView.frame.size.height);
+    frame.origin = origin;
+    self.cancelView.frame = frame;
+}
+
+- (void)hideCancelMenu
+{
+    CGPoint origin = CGPointMake(self.cancelView.frame.origin.x, self.cancelView.frame.origin.y + self.cancelView.frame.size.height);
+    CGRect frame = CGRectMake(0, 0, self.cancelView.frame.size.width, self.cancelView.frame.size.height);
+    frame.origin = origin;
+    self.cancelView.frame = frame;
 }
 
 - (void)notifyAboutPlace
