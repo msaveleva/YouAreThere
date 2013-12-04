@@ -7,6 +7,7 @@
 //
 
 #define COORDINATES_DELTA 50
+#define CANCEL_ANIMATION 0.2
 
 #import "YTViewController.h"
 
@@ -42,7 +43,6 @@
     
     self.isNotified = NO;
     [self enableDisableCancelButton];
-    [self hideCancelMenu];
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,18 +90,23 @@
 
 - (void)showCancelMenu
 {
-    CGPoint origin = CGPointMake(self.cancelView.frame.origin.x, self.cancelView.frame.origin.y - self.cancelView.frame.size.height);
-    CGRect frame = CGRectMake(0, 0, self.cancelView.frame.size.width, self.cancelView.frame.size.height);
-    frame.origin = origin;
-    self.cancelView.frame = frame;
+    
+    [UIView animateWithDuration:CANCEL_ANIMATION animations:^{
+        CGPoint origin = CGPointMake(self.cancelView.frame.origin.x, self.cancelView.frame.origin.y - self.cancelView.frame.size.height);
+        CGRect frame = CGRectMake(0, 0, self.cancelView.frame.size.width, self.cancelView.frame.size.height);
+        frame.origin = origin;
+        self.cancelView.frame = frame;
+    }];
 }
 
 - (void)hideCancelMenu
 {
-    CGPoint origin = CGPointMake(self.cancelView.frame.origin.x, self.cancelView.frame.origin.y + self.cancelView.frame.size.height);
-    CGRect frame = CGRectMake(0, 0, self.cancelView.frame.size.width, self.cancelView.frame.size.height);
-    frame.origin = origin;
-    self.cancelView.frame = frame;
+    [UIView animateWithDuration:CANCEL_ANIMATION animations:^{
+        CGPoint origin = CGPointMake(self.cancelView.frame.origin.x, self.cancelView.frame.origin.y + self.cancelView.frame.size.height);
+        CGRect frame = CGRectMake(0, 0, self.cancelView.frame.size.width, self.cancelView.frame.size.height);
+        frame.origin = origin;
+        self.cancelView.frame = frame;
+    }];
 }
 
 - (void)notifyAboutPlace
