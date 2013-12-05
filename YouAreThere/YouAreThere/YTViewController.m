@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Maria Saveleva. All rights reserved.
 //
 
-#define COORDINATES_DELTA 50
+#define COORDINATES_DELTA 30
 #define CANCEL_ANIMATION 0.2
 
 #import "YTViewController.h"
@@ -39,6 +39,7 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.delegate = self;
+    self.mapView.userTrackingMode = MKUserTrackingModeFollow;
     self.location = nil;
     self.pin = [[MKPointAnnotation alloc] init];
     self.pin.title = @"Get here";
@@ -128,8 +129,9 @@
     [notification setFireDate:nil];
     [notification setAlertBody:@"Hi! It's LocalNotification!"];
     notification.soundName = @"VOCALOID solo.caf";
-//    notification.soundName = UILocalNotificationDefaultSoundName;
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    [self hideCancelMenu];
+    [self.mapView removeAnnotation:self.pin];
 }
 
 - (void)checkIfCoorinatesAreEqual:(CLLocation *)currentLocation
