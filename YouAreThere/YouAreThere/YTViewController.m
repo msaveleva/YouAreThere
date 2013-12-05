@@ -6,21 +6,27 @@
 //  Copyright (c) 2013 Maria Saveleva. All rights reserved.
 //
 
-#define COORDINATES_DELTA 50
+#define COORDINATES_DELTA 30
+#define CANCEL_ANIMATION 0.2
 
 #import "YTViewController.h"
 
 @interface YTViewController ()
+
+@property (nonatomic) BOOL cancelMenuHidden;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) MKPointAnnotation *pin;
 @property (nonatomic, strong) CLLocation *location;
 @property (nonatomic) BOOL isNotified;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UIView *cancelView;
 
 - (IBAction)saveDestinationLoc:(id)sender;
 - (IBAction)cancelNotification:(id)sender;
 - (void)enableDisableCancelButton;
+- (void)showCancelMenu;
+- (void)hideCancelMenu;
 
 @end
 
@@ -33,12 +39,14 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.delegate = self;
+    self.mapView.userTrackingMode = MKUserTrackingModeFollow;
     self.location = nil;
     self.pin = [[MKPointAnnotation alloc] init];
     self.pin.title = @"Get here";
     
     self.isNotified = NO;
     [self enableDisableCancelButton];
+    self.cancelMenuHidden = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,6 +69,8 @@
     
     [self.locationManager startUpdatingLocation];
     [self enableDisableCancelButton];
+    
+    [self showCancelMenu];
 }
 
 - (IBAction)cancelNotification:(id)sender
@@ -69,6 +79,8 @@
     [self.mapView removeAnnotation:self.pin];
     [self enableDisableCancelButton];
     [self.locationManager stopUpdatingLocation];
+    
+    [self hideCancelMenu];
 }
 
 - (void)enableDisableCancelButton
@@ -78,6 +90,32 @@
     } else {
         self.cancelButton.enabled = YES;
     }
+}
+
+- (void)showCancelMenu
+{
+    if (self.cancelMenuHidden) {
+        [UIView animateWithDuration:CANCEL_ANIMATION animations:^{
+            CGPoint origin = CGPointMake(self.cancelView.frame.origin.x, self.cancelView.frame.origin.y - self.cancelView.frame.size.height);
+            CGRect frame = CGRectMake(0, 0, self.cancelView.frame.size.width, self.cancelView.frame.size.height);
+            frame.origin = origin;
+            self.cancelView.frame = frame;
+        }];
+        
+        self.cancelMenuHidden = NO;
+    }
+}
+
+- (void)hideCancelMenu
+{
+    [UIView animateWithDuration:CANCEL_ANIMATION animations:^{
+        CGPoint origin = CGPointMake(self.cancelView.frame.origin.x, self.cancelView.frame.origin.y + self.cancelView.frame.size.height);
+        CGRect frame = CGRectMake(0, 0, self.cancelView.frame.size.width, self.cancelView.frame.size.height);
+        frame.origin = origin;
+        self.cancelView.frame = frame;
+    }];
+    
+    self.cancelMenuHidden = YES;
 }
 
 - (void)notifyAboutPlace
@@ -91,8 +129,9 @@
     [notification setFireDate:nil];
     [notification setAlertBody:@"Hi! It's LocalNotification!"];
     notification.soundName = @"VOCALOID solo.caf";
-//    notification.soundName = UILocalNotificationDefaultSoundName;
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    [self hideCancelMenu];
+    [self.mapView removeAnnotation:self.pin];
 }
 
 - (void)checkIfCoorinatesAreEqual:(CLLocation *)currentLocation

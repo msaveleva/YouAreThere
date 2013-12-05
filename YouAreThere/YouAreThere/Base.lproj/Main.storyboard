@@ -24,7 +24,7 @@
                                 </connections>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="21L-JV-Ipc">
-                                <rect key="frame" x="0.0" y="510" width="320" height="58"/>
+                                <rect key="frame" x="0.0" y="568" width="320" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDV-LX-sdl">
@@ -55,7 +55,7 @@
                             <constraint firstItem="gBC-gj-ymX" firstAttribute="top" secondItem="wiR-Nd-TQJ" secondAttribute="bottom" id="ApZ-FV-KGA"/>
                             <constraint firstItem="wiR-Nd-TQJ" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="BTS-j6-SgB"/>
                             <constraint firstAttribute="trailing" secondItem="21L-JV-Ipc" secondAttribute="trailing" id="bTo-7C-5Ab"/>
-                            <constraint firstItem="gBC-gj-ymX" firstAttribute="top" secondItem="21L-JV-Ipc" secondAttribute="bottom" id="nqu-F0-HiM"/>
+                            <constraint firstItem="gBC-gj-ymX" firstAttribute="top" secondItem="21L-JV-Ipc" secondAttribute="bottom" constant="-58" id="nqu-F0-HiM"/>
                             <constraint firstAttribute="trailing" secondItem="wiR-Nd-TQJ" secondAttribute="trailing" id="r1h-Mg-UIm"/>
                             <constraint firstItem="wiR-Nd-TQJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="tAP-PT-Aqf"/>
                         </constraints>
@@ -65,6 +65,7 @@
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="wDV-LX-sdl" id="1Ix-0E-g5N"/>
+                        <outlet property="cancelView" destination="21L-JV-Ipc" id="54f-SG-leg"/>
                         <outlet property="mapView" destination="wiR-Nd-TQJ" id="vqf-Ge-IVO"/>
                     </connections>
                 </viewController>
