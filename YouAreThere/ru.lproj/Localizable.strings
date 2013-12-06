@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  YouAreThere
+
+  Created by Maria Saveleva on 12/6/13.
+  Copyright (c) 2013 Maria Saveleva. All rights reserved.
+*/
+"Cancel notification" = "Отменить сигнал";
+"Get here" = "Попасть сюда";
+"You are there" = "Вы на месте";
+"Already" = "Уже";

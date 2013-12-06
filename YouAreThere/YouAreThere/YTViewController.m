@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Maria Saveleva. All rights reserved.
 //
 
+#define SOUND_NAME @"VOCALOID solo.caf"
 #define COORDINATES_DELTA 30
 #define CANCEL_ANIMATION 0.2
 
@@ -42,7 +43,9 @@
     self.mapView.userTrackingMode = MKUserTrackingModeFollow;
     self.location = nil;
     self.pin = [[MKPointAnnotation alloc] init];
-    self.pin.title = @"Get here";
+    self.pin.title = [NSString stringWithFormat:NSLocalizedString(@"Get here", nil)];
+    self.cancelButton.titleLabel.text =
+        [NSString stringWithFormat:NSLocalizedString(@"Cancel notification", nil)];
     
     self.isNotified = NO;
     [self enableDisableCancelButton];
@@ -60,8 +63,10 @@
     }
     
     CGPoint touchPoint = [sender locationInView:self.mapView];
-    CLLocationCoordinate2D location = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
-    CLLocation *userLocation = [[CLLocation alloc] initWithLatitude:location.latitude longitude:location.longitude];
+    CLLocationCoordinate2D location =
+        [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
+    CLLocation *userLocation = [[CLLocation alloc] initWithLatitude:location.latitude
+                                                          longitude:location.longitude];
     self.location = userLocation;
     
     [self.pin setCoordinate:location];
@@ -96,8 +101,10 @@
 {
     if (self.cancelMenuHidden) {
         [UIView animateWithDuration:CANCEL_ANIMATION animations:^{
-            CGPoint origin = CGPointMake(self.cancelView.frame.origin.x, self.cancelView.frame.origin.y - self.cancelView.frame.size.height);
-            CGRect frame = CGRectMake(0, 0, self.cancelView.frame.size.width, self.cancelView.frame.size.height);
+            CGPoint origin = CGPointMake(self.cancelView.frame.origin.x,
+                                         self.cancelView.frame.origin.y - self.cancelView.frame.size.height);
+            CGRect frame = CGRectMake(0, 0, self.cancelView.frame.size.width,
+                                      self.cancelView.frame.size.height);
             frame.origin = origin;
             self.cancelView.frame = frame;
         }];
@@ -109,8 +116,10 @@
 - (void)hideCancelMenu
 {
     [UIView animateWithDuration:CANCEL_ANIMATION animations:^{
-        CGPoint origin = CGPointMake(self.cancelView.frame.origin.x, self.cancelView.frame.origin.y + self.cancelView.frame.size.height);
-        CGRect frame = CGRectMake(0, 0, self.cancelView.frame.size.width, self.cancelView.frame.size.height);
+        CGPoint origin = CGPointMake(self.cancelView.frame.origin.x,
+                                     self.cancelView.frame.origin.y + self.cancelView.frame.size.height);
+        CGRect frame = CGRectMake(0, 0, self.cancelView.frame.size.width,
+                                  self.cancelView.frame.size.height);
         frame.origin = origin;
         self.cancelView.frame = frame;
     }];
@@ -127,8 +136,8 @@
     self.isNotified = YES;
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     [notification setFireDate:nil];
-    [notification setAlertBody:@"Hi! It's LocalNotification!"];
-    notification.soundName = @"VOCALOID solo.caf";
+    [notification setAlertBody:[NSString stringWithFormat:NSLocalizedString(@"You are there", nil)]];
+    notification.soundName = SOUND_NAME;
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     [self hideCancelMenu];
     [self.mapView removeAnnotation:self.pin];

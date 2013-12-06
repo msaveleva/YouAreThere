@@ -24,6 +24,7 @@
 		3F282194184B53BD00625362 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F282193184B53BD00625362 /* CoreLocation.framework */; };
 		3F282196184B5BAF00625362 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F282195184B5BAF00625362 /* MapKit.framework */; };
 		3F28219D184B81FA00625362 /* VOCALOID solo.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F28219C184B80F100625362 /* VOCALOID solo.caf */; };
+		3FD53CBE1852581000C6F563 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FD53CC01852581000C6F563 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,11 @@
 		3F282193184B53BD00625362 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3F282195184B5BAF00625362 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3F28219C184B80F100625362 /* VOCALOID solo.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VOCALOID solo.caf"; sourceTree = "<group>"; };
+		3FD53CBB1852579800C6F563 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		3FD53CBC1852579800C6F563 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3FD53CBD1852579800C6F563 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3FD53CC11852581A00C6F563 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3FD53CC21852581B00C6F563 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,7 @@
 		3F282164184B536D00625362 /* YouAreThere */ = {
 			isa = PBXGroup;
 			children = (
+				3FD53CC01852581000C6F563 /* Localizable.strings */,
 				3F28219C184B80F100625362 /* VOCALOID solo.caf */,
 				3F28216D184B536D00625362 /* YTAppDelegate.h */,
 				3F28216E184B536D00625362 /* YTAppDelegate.m */,
@@ -223,6 +230,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 3F282152184B536D00625362;
 			productRefGroup = 3F28215C184B536D00625362 /* Products */;
@@ -240,6 +248,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FD53CBE1852581000C6F563 /* Localizable.strings in Resources */,
 				3F28219D184B81FA00625362 /* VOCALOID solo.caf in Resources */,
 				3F282177184B536D00625362 /* Images.xcassets in Resources */,
 				3F282169184B536D00625362 /* InfoPlist.strings in Resources */,
@@ -291,6 +300,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3F282168184B536D00625362 /* en */,
+				3FD53CBC1852579800C6F563 /* ru */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -299,6 +309,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3F282171184B536D00625362 /* Base */,
+				3FD53CBB1852579800C6F563 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -307,8 +318,19 @@
 			isa = PBXVariantGroup;
 			children = (
 				3F282187184B536D00625362 /* en */,
+				3FD53CBD1852579800C6F563 /* ru */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3FD53CC01852581000C6F563 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FD53CC11852581A00C6F563 /* en */,
+				3FD53CC21852581B00C6F563 /* ru */,
+			);
+			name = Localizable.strings;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -347,7 +369,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -380,7 +402,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
