@@ -44,8 +44,8 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"You are there", nil)]
-                                                        message:[NSString stringWithFormat:NSLocalizedString(@"Already", nil)]
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"You are there", nil)
+                                                        message:NSLocalizedString(@"Already", nil)
                                                        delegate:self cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
     [alertView show];

@@ -43,8 +43,6 @@
     self.mapView.userTrackingMode = MKUserTrackingModeFollow;
     self.location = nil;
     self.pin = [[MKPointAnnotation alloc] init];
-    self.cancelButton.titleLabel.text =
-        [NSString stringWithFormat:NSLocalizedString(@"Cancel notification", nil)];
     
     self.isNotified = NO;
     [self enableDisableCancelButton];
@@ -61,21 +59,20 @@
     CGPoint touchPoint = [sender locationInView:self.mapView];
     CLLocationCoordinate2D location =
     [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
-    CLLocation *userLocation = [[CLLocation alloc] initWithLatitude:location.latitude
+    self.location = [[CLLocation alloc] initWithLatitude:location.latitude
                                                           longitude:location.longitude];
-    self.location = userLocation;
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Get here?"
                                                     message:@"Wake you up when get here?"
                                                    delegate:self
-                                          cancelButtonTitle:@"Yes"
-                                          otherButtonTitles:@"No", nil];
+                                          cancelButtonTitle:@"No"
+                                          otherButtonTitles:@"Yes", nil];
     [alert show];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0 ) {
+    if (buttonIndex == 1) {
         if (self.isNotified) {
             self.isNotified = NO;
         }
@@ -104,8 +101,10 @@
 {
     if (!self.location) {
         self.cancelButton.enabled = NO;
+//        self.cancelButton.titleLabel.text = @"Tap to set up destination point";
     } else {
         self.cancelButton.enabled = YES;
+//        self.cancelButton.titleLabel.text = @"Cancel notification";
     }
 }
 
@@ -148,7 +147,7 @@
     self.isNotified = YES;
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     [notification setFireDate:nil];
-    [notification setAlertBody:[NSString stringWithFormat:NSLocalizedString(@"You are there", nil)]];
+    [notification setAlertBody:NSLocalizedString(@"You are there", nil)];
     notification.soundName = SOUND_NAME;
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     [self hideCancelMenu];
