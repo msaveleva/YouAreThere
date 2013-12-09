@@ -11,7 +11,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 
-@interface YTViewController : UIViewController <CLLocationManagerDelegate, UIGestureRecognizerDelegate>
+@interface YTViewController : UIViewController <CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 

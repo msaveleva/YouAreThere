@@ -43,7 +43,6 @@
     self.mapView.userTrackingMode = MKUserTrackingModeFollow;
     self.location = nil;
     self.pin = [[MKPointAnnotation alloc] init];
-    self.pin.title = [NSString stringWithFormat:NSLocalizedString(@"Get here", nil)];
     self.cancelButton.titleLabel.text =
         [NSString stringWithFormat:NSLocalizedString(@"Cancel notification", nil)];
     
@@ -58,24 +57,37 @@
 }
 
 - (IBAction)saveDestinationLoc:(id)sender {
-    if (self.isNotified) {
-        self.isNotified = NO;
-    }
     
     CGPoint touchPoint = [sender locationInView:self.mapView];
     CLLocationCoordinate2D location =
-        [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
+    [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
     CLLocation *userLocation = [[CLLocation alloc] initWithLatitude:location.latitude
                                                           longitude:location.longitude];
     self.location = userLocation;
     
-    [self.pin setCoordinate:location];
-    [self.mapView addAnnotation:self.pin];
-    
-    [self.locationManager startUpdatingLocation];
-    [self enableDisableCancelButton];
-    
-    [self showCancelMenu];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Get here?"
+                                                    message:@"Wake you up when get here?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Yes"
+                                          otherButtonTitles:@"No", nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0 ) {
+        if (self.isNotified) {
+            self.isNotified = NO;
+        }
+        
+        [self.pin setCoordinate:self.location.coordinate];
+        [self.mapView addAnnotation:self.pin];
+        
+        [self.locationManager startUpdatingLocation];
+        [self enableDisableCancelButton];
+        
+        [self showCancelMenu];
+    }
 }
 
 - (IBAction)cancelNotification:(id)sender
