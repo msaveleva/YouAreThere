@@ -15,6 +15,7 @@
 @interface YTViewController ()
 
 @property (nonatomic) BOOL cancelMenuHidden;
+@property (nonatomic) BOOL tapViewHidden;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) MKPointAnnotation *pin;
@@ -22,12 +23,17 @@
 @property (nonatomic) BOOL isNotified;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIView *cancelView;
+@property (weak, nonatomic) IBOutlet UIView *tapView;
+@property (weak, nonatomic) IBOutlet UILabel *tapLabel;
+
 
 - (IBAction)saveDestinationLoc:(id)sender;
 - (IBAction)cancelNotification:(id)sender;
 - (void)enableDisableCancelButton;
 - (void)showCancelMenu;
 - (void)hideCancelMenu;
+- (void)hideTapView;
+- (void)showTapView;
 
 @end
 
@@ -47,6 +53,7 @@
     self.isNotified = NO;
     [self enableDisableCancelButton];
     self.cancelMenuHidden = YES;
+    self.tapViewHidden = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,6 +91,7 @@
         [self enableDisableCancelButton];
         
         [self showCancelMenu];
+        [self hideTapView];
     }
 }
 
@@ -95,6 +103,7 @@
     [self.locationManager stopUpdatingLocation];
     
     [self hideCancelMenu];
+    [self showTapView];
 }
 
 - (void)enableDisableCancelButton
@@ -126,16 +135,50 @@
 
 - (void)hideCancelMenu
 {
-    [UIView animateWithDuration:CANCEL_ANIMATION animations:^{
-        CGPoint origin = CGPointMake(self.cancelView.frame.origin.x,
-                                     self.cancelView.frame.origin.y + self.cancelView.frame.size.height);
-        CGRect frame = CGRectMake(0, 0, self.cancelView.frame.size.width,
-                                  self.cancelView.frame.size.height);
-        frame.origin = origin;
-        self.cancelView.frame = frame;
-    }];
-    
-    self.cancelMenuHidden = YES;
+    if (!self.cancelMenuHidden) {
+        [UIView animateWithDuration:CANCEL_ANIMATION animations:^{
+            CGPoint origin = CGPointMake(self.cancelView.frame.origin.x,
+                                         self.cancelView.frame.origin.y + self.cancelView.frame.size.height);
+            CGRect frame = CGRectMake(0, 0, self.cancelView.frame.size.width,
+                                      self.cancelView.frame.size.height);
+            frame.origin = origin;
+            self.cancelView.frame = frame;
+        }];
+        
+        self.cancelMenuHidden = YES;
+    }
+}
+
+- (void)hideTapView
+{
+    if (!self.tapViewHidden) {
+        [UIView animateWithDuration:CANCEL_ANIMATION animations:^{
+            CGPoint origin = CGPointMake(self.tapView.frame.origin.x,
+                                         self.tapView.frame.origin.y - self.tapView.frame.size.height);
+            CGRect frame = CGRectMake(0, 0, self.tapView.frame.size.width,
+                                      self.tapView.frame.size.height);
+            frame.origin = origin;
+            self.tapView.frame = frame;
+        }];
+        
+        self.tapViewHidden = YES;
+    }
+}
+
+- (void)showTapView
+{
+    if (self.tapViewHidden) {
+        [UIView animateWithDuration:CANCEL_ANIMATION animations:^{
+            CGPoint origin = CGPointMake(self.tapView.frame.origin.x,
+                                         self.tapView.frame.origin.y + self.tapView.frame.size.height);
+            CGRect frame = CGRectMake(0, 0, self.tapView.frame.size.width,
+                                      self.tapView.frame.size.height);
+            frame.origin = origin;
+            self.tapView.frame = frame;
+        }];
+        
+        self.tapViewHidden = NO;
+    }
 }
 
 - (void)notifyAboutPlace
