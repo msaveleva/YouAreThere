@@ -54,6 +54,9 @@
     [self enableDisableCancelButton];
     self.cancelMenuHidden = YES;
     self.tapViewHidden = NO;
+    
+    self.tapLabel.text = NSLocalizedString(@"Tap to set destination", nil);
+    self.cancelButton.titleLabel.text = NSLocalizedString(@"Tap to set destination", nil);
 }
 
 - (void)didReceiveMemoryWarning
