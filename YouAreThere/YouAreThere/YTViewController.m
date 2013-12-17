@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Maria Saveleva. All rights reserved.
 //
 
-#define SOUND_NAME @"VOCALOID solo.caf"
+#define SOUND_NAME @"Sound.caf"
 #define COORDINATES_DELTA 30
 #define CANCEL_ANIMATION 0.2
 
