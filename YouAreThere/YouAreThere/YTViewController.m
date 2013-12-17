@@ -72,11 +72,11 @@
     self.location = [[CLLocation alloc] initWithLatitude:location.latitude
                                                           longitude:location.longitude];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Get here?"
-                                                    message:@"Wake you up when get here?"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Get here", nil)
+                                                    message:NSLocalizedString(@"Wake you up when get here?", nil)
                                                    delegate:self
-                                          cancelButtonTitle:@"No"
-                                          otherButtonTitles:@"Yes", nil];
+                                          cancelButtonTitle:NSLocalizedString(@"No", nil)
+                                          otherButtonTitles:NSLocalizedString(@"Yes", nil), nil];
     [alert show];
 }
 

@@ -8,4 +8,8 @@
 "Cancel notification" = "Отменить сигнал";
 "You are there" = "Вы на месте";
 "Already" = "Уже";
-"Tap to set destination" = "Укажите место назначения";
+"Tap to set destination" = "Куда нужно попасть?";
+"Yes" = "Да";
+"No" = "Нет";
+"Wake you up when get here?" = "Разбудить, когда приедем?";
+"Get here" = "Попасть сюда";
