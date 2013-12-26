@@ -34,6 +34,7 @@
 - (void)hideCancelMenu;
 - (void)hideTapView;
 - (void)showTapView;
+- (BOOL)isLatestVersion;
 
 @end
 
@@ -212,6 +213,17 @@
             [self notifyAboutPlace];
         }
     }
+}
+
+- (BOOL)isLatestVersion
+{
+    BOOL result = NO;
+    CGFloat version = [[[UIDevice currentDevice] systemVersion] floatValue];
+    if (version >= 7) {
+        result = YES;
+    }
+    
+    return result;
 }
 
 #pragma mark - CLLocation methods
