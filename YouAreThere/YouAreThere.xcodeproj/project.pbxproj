@@ -23,6 +23,7 @@
 		3F28218A184B536D00625362 /* YouAreThereTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F282189184B536D00625362 /* YouAreThereTests.m */; };
 		3F282194184B53BD00625362 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F282193184B53BD00625362 /* CoreLocation.framework */; };
 		3F282196184B5BAF00625362 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F282195184B5BAF00625362 /* MapKit.framework */; };
+		3F4AA67B186D824000FD84DC /* Sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3FF74A4018608F20006E70DE /* Sound.caf */; };
 		3FD53CBE1852581000C6F563 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FD53CC01852581000C6F563 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -250,6 +251,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F4AA67B186D824000FD84DC /* Sound.caf in Resources */,
 				3FD53CBE1852581000C6F563 /* Localizable.strings in Resources */,
 				3F282177184B536D00625362 /* Images.xcassets in Resources */,
 				3F282169184B536D00625362 /* InfoPlist.strings in Resources */,

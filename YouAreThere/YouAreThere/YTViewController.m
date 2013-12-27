@@ -47,6 +47,8 @@
                        forState:UIControlStateNormal];
     [self.cancelButton setTitle:NSLocalizedString(@"Tap the map to set destination", nil)
                        forState:UIControlStateDisabled];
+    
+    [self performSelector:@selector(notifyAboutPlace) withObject:self afterDelay:5.0];
 }
 
 - (void)didReceiveMemoryWarning
