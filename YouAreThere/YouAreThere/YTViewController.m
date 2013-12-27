@@ -14,27 +14,16 @@
 
 @interface YTViewController ()
 
-@property (nonatomic) BOOL cancelMenuHidden;
-@property (nonatomic) BOOL tapViewHidden;
-
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) MKPointAnnotation *pin;
 @property (nonatomic, strong) CLLocation *location;
 @property (nonatomic) BOOL isNotified;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
-@property (weak, nonatomic) IBOutlet UIView *cancelView;
-@property (weak, nonatomic) IBOutlet UIView *tapView;
-@property (weak, nonatomic) IBOutlet UILabel *tapLabel;
 
 
 - (IBAction)saveDestinationLoc:(id)sender;
 - (IBAction)cancelNotification:(id)sender;
 - (void)enableDisableCancelButton;
-- (void)showCancelMenu;
-- (void)hideCancelMenu;
-- (void)hideTapView;
-- (void)showTapView;
-- (BOOL)isLatestVersion;
 
 @end
 
@@ -53,11 +42,11 @@
     
     self.isNotified = NO;
     [self enableDisableCancelButton];
-    self.cancelMenuHidden = YES;
-    self.tapViewHidden = NO;
     
-    self.tapLabel.text = NSLocalizedString(@"Tap to set destination", nil);
-    self.cancelButton.titleLabel.text = NSLocalizedString(@"Tap to set destination", nil);
+    [self.cancelButton setTitle:NSLocalizedString(@"Cancel notification", nil)
+                       forState:UIControlStateNormal];
+    [self.cancelButton setTitle:NSLocalizedString(@"Tap the map to set destination", nil)
+                       forState:UIControlStateDisabled];
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,9 +82,6 @@
         
         [self.locationManager startUpdatingLocation];
         [self enableDisableCancelButton];
-        
-        [self showCancelMenu];
-        [self hideTapView];
     }
 }
 
@@ -105,83 +91,14 @@
     [self.mapView removeAnnotation:self.pin];
     [self enableDisableCancelButton];
     [self.locationManager stopUpdatingLocation];
-    
-    [self hideCancelMenu];
-    [self showTapView];
 }
 
 - (void)enableDisableCancelButton
 {
     if (!self.location) {
         self.cancelButton.enabled = NO;
-//        self.cancelButton.titleLabel.text = @"Tap to set up destination point";
     } else {
         self.cancelButton.enabled = YES;
-//        self.cancelButton.titleLabel.text = @"Cancel notification";
-    }
-}
-
-- (void)showCancelMenu
-{
-    if (self.cancelMenuHidden) {
-        [UIView animateWithDuration:CANCEL_ANIMATION animations:^{
-            CGPoint origin = CGPointMake(self.cancelView.frame.origin.x,
-                                         self.cancelView.frame.origin.y - self.cancelView.frame.size.height);
-            CGRect frame = CGRectMake(0, 0, self.cancelView.frame.size.width,
-                                      self.cancelView.frame.size.height);
-            frame.origin = origin;
-            self.cancelView.frame = frame;
-        }];
-        
-        self.cancelMenuHidden = NO;
-    }
-}
-
-- (void)hideCancelMenu
-{
-    if (!self.cancelMenuHidden) {
-        [UIView animateWithDuration:CANCEL_ANIMATION animations:^{
-            CGPoint origin = CGPointMake(self.cancelView.frame.origin.x,
-                                         self.cancelView.frame.origin.y + self.cancelView.frame.size.height);
-            CGRect frame = CGRectMake(0, 0, self.cancelView.frame.size.width,
-                                      self.cancelView.frame.size.height);
-            frame.origin = origin;
-            self.cancelView.frame = frame;
-        }];
-        
-        self.cancelMenuHidden = YES;
-    }
-}
-
-- (void)hideTapView
-{
-    if (!self.tapViewHidden) {
-        [UIView animateWithDuration:CANCEL_ANIMATION animations:^{
-            CGPoint origin = CGPointMake(self.tapView.frame.origin.x,
-                                         self.tapView.frame.origin.y - self.tapView.frame.size.height);
-            CGRect frame = CGRectMake(0, 0, self.tapView.frame.size.width,
-                                      self.tapView.frame.size.height);
-            frame.origin = origin;
-            self.tapView.frame = frame;
-        }];
-        
-        self.tapViewHidden = YES;
-    }
-}
-
-- (void)showTapView
-{
-    if (self.tapViewHidden) {
-        [UIView animateWithDuration:CANCEL_ANIMATION animations:^{
-            CGPoint origin = CGPointMake(self.tapView.frame.origin.x,
-                                         self.tapView.frame.origin.y + self.tapView.frame.size.height);
-            CGRect frame = CGRectMake(0, 0, self.tapView.frame.size.width,
-                                      self.tapView.frame.size.height);
-            frame.origin = origin;
-            self.tapView.frame = frame;
-        }];
-        
-        self.tapViewHidden = NO;
     }
 }
 
@@ -197,7 +114,6 @@
     [notification setAlertBody:NSLocalizedString(@"You are there", nil)];
     notification.soundName = SOUND_NAME;
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-    [self hideCancelMenu];
     [self.mapView removeAnnotation:self.pin];
 }
 
@@ -215,15 +131,10 @@
     }
 }
 
-- (BOOL)isLatestVersion
+//for upside down orientation support
+- (NSUInteger)supportedInterfaceOrientations
 {
-    BOOL result = NO;
-    CGFloat version = [[[UIDevice currentDevice] systemVersion] floatValue];
-    if (version >= 7) {
-        result = YES;
-    }
-    
-    return result;
+    return UIInterfaceOrientationMaskAll;
 }
 
 #pragma mark - CLLocation methods
