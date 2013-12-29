@@ -45,7 +45,7 @@
     
     [self.cancelButton setTitle:NSLocalizedString(@"Cancel notification", nil)
                        forState:UIControlStateNormal];
-    [self.cancelButton setTitle:NSLocalizedString(@"Tap the map to set destination", nil)
+    [self.cancelButton setTitle:NSLocalizedString(@"Tap on the map to set destination", nil)
                        forState:UIControlStateDisabled];
 }
 
@@ -62,8 +62,8 @@
     self.location = [[CLLocation alloc] initWithLatitude:location.latitude
                                                           longitude:location.longitude];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Get here", nil)
-                                                    message:NSLocalizedString(@"Wake you up when get here?", nil)
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Get there", nil)
+                                                    message:NSLocalizedString(@"Wake you up there?", nil)
                                                    delegate:self
                                           cancelButtonTitle:NSLocalizedString(@"No", nil)
                                           otherButtonTitles:NSLocalizedString(@"Yes", nil), nil];
@@ -121,7 +121,7 @@
 {
     if (self.location) {
         NSInteger distance = [currentLocation distanceFromLocation:self.location];
-        NSLog(@"DISTANCE: %d", distance);
+
         if (distance <= COORDINATES_DELTA) {
             if (self.isNotified) {
                 return;

@@ -8,8 +8,8 @@
 "Cancel notification" = "Отменить сигнал";
 "You are there" = "Вы на месте";
 "Already" = "Уже";
-"Tap the map to set destination" = "Куда нужно попасть?";
+"Tap on the map to set destination" = "Куда нужно попасть?";
 "Yes" = "Да";
 "No" = "Нет";
-"Wake you up when get here?" = "Разбудить, когда приедем?";
-"Get here" = "Попасть сюда";
+"Wake you up there?" = "Разбудить, когда приедем?";
+"Get there" = "Попасть сюда";
