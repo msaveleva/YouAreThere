@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Maria Saveleva. All rights reserved.
 //
 
-#define COORDINATES_DELTA 30
+#define COORDINATES_DELTA 50
 #define SOUND_NAME @"Sound.caf"
 #define LOCATION_DETECTED @"Location detected"
 
@@ -16,7 +16,6 @@
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *userLocation;
-@property (nonatomic) BOOL isNotified;
 
 - (void)checkIfCoordinatesAreEqual:(CLLocation *)location;
 - (void)notifyAboutPlace;
@@ -43,7 +42,6 @@
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        self.isNotified = NO;
     }
     
     return self;
@@ -54,10 +52,8 @@
     if (self.userLocation) {
         NSInteger distance = [location distanceFromLocation:self.userLocation];
         
+        NSLog(@"Distance: %d", distance);
         if (distance <= COORDINATES_DELTA) {
-            if (self.isNotified) {
-                return;
-            }
             [self notifyAboutPlace];
         }
     }
@@ -65,14 +61,17 @@
 
 - (void)notifyAboutPlace
 {
-    self.isNotified = YES;
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    [notification setFireDate:nil];
-    [notification setAlertBody:NSLocalizedString(@"You are there", nil)];
-    notification.soundName = SOUND_NAME;
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:LOCATION_DETECTED object:self];
+    if (self.userLocation) {
+        UILocalNotification *notification = [[UILocalNotification alloc] init];
+        [notification setFireDate:nil];
+        [notification setAlertBody:NSLocalizedString(@"You are there", nil)];
+        notification.soundName = SOUND_NAME;
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:LOCATION_DETECTED object:self];
+        
+        self.userLocation = nil;
+    }
 }
 
 - (void)setUserLocation:(CLLocation *)userLocation

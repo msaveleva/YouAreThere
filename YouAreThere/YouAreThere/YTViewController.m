@@ -16,7 +16,6 @@
 
 @property (nonatomic, strong) MKPointAnnotation *pin;
 @property (nonatomic, strong) CLLocation *location;
-@property (nonatomic) BOOL isNotified;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 
 
@@ -36,7 +35,6 @@
     self.mapView.userTrackingMode = MKUserTrackingModeFollow;
     self.location = nil;
     self.pin = [[MKPointAnnotation alloc] init];
-    self.isNotified = NO;
     
     [self enableDisableCancelButton];
     [self.cancelButton setTitle:NSLocalizedString(@"Cancel notification", nil)
@@ -75,10 +73,6 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        if (self.isNotified) {
-            self.isNotified = NO;
-        }
-        
         [self.pin setCoordinate:self.location.coordinate];
         [self.mapView addAnnotation:self.pin];
         
@@ -108,7 +102,6 @@
 - (void)handleLocationNotification:(NSNotification *)notification
 {
     [self.mapView removeAnnotation:self.pin];
-    self.isNotified = YES;
 }
 
 //for upside down orientation support
