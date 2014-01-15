@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Maria Saveleva. All rights reserved.
 //
 
-#define COORDINATES_DELTA 5
+#define COORDINATES_DELTA 30
 #define SOUND_NAME @"Sound.caf"
 #define LOCATION_DETECTED @"Location detected"
 
