@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Maria Saveleva. All rights reserved.
 //
 
-#define COORDINATES_DELTA 30
+#define COORDINATES_DELTA 5
 #define SOUND_NAME @"Sound.caf"
 #define LOCATION_DETECTED @"Location detected"
 
@@ -73,6 +73,11 @@
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:LOCATION_DETECTED object:self];
+}
+
+- (void)setUserLocation:(CLLocation *)userLocation
+{
+    _userLocation = userLocation;
 }
 
 #pragma mark - CLLocationManager methods

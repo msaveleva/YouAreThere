@@ -55,7 +55,8 @@
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)saveDestinationLoc:(id)sender {
+- (IBAction)saveDestinationLoc:(id)sender
+{
     
     CGPoint touchPoint = [sender locationInView:self.mapView];
     CLLocationCoordinate2D location =
@@ -83,6 +84,7 @@
         
         [[YTLocationManager sharedManager] startUpdatingLocation];
         [self enableDisableCancelButton];
+        [[YTLocationManager sharedManager] setUserLocation:self.location];
     }
 }
 
@@ -106,6 +108,7 @@
 - (void)handleLocationNotification:(NSNotification *)notification
 {
     [self.mapView removeAnnotation:self.pin];
+    self.isNotified = YES;
 }
 
 //for upside down orientation support
