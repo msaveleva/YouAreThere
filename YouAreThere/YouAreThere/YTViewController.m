@@ -6,15 +6,14 @@
 //  Copyright (c) 2013 Maria Saveleva. All rights reserved.
 //
 
-#define SOUND_NAME @"Sound.caf"
-#define COORDINATES_DELTA 30
 #define CANCEL_ANIMATION 0.2
+#define LOCATION_DETECTED @"Location detected"
 
 #import "YTViewController.h"
+#import "YTLocationManager.h"
 
 @interface YTViewController ()
 
-@property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) MKPointAnnotation *pin;
 @property (nonatomic, strong) CLLocation *location;
 @property (nonatomic) BOOL isNotified;
@@ -24,6 +23,7 @@
 - (IBAction)saveDestinationLoc:(id)sender;
 - (IBAction)cancelNotification:(id)sender;
 - (void)enableDisableCancelButton;
+- (void)handleLocationNotification:(NSNotification *)notification;
 
 @end
 
@@ -33,20 +33,21 @@
 {
     [super viewDidLoad];
     
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.delegate = self;
     self.mapView.userTrackingMode = MKUserTrackingModeFollow;
     self.location = nil;
     self.pin = [[MKPointAnnotation alloc] init];
-    
     self.isNotified = NO;
-    [self enableDisableCancelButton];
     
+    [self enableDisableCancelButton];
     [self.cancelButton setTitle:NSLocalizedString(@"Cancel notification", nil)
                        forState:UIControlStateNormal];
     [self.cancelButton setTitle:NSLocalizedString(@"Tap on the map to set destination", nil)
                        forState:UIControlStateDisabled];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleLocationNotification:)
+                                                 name:LOCATION_DETECTED
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,7 +81,7 @@
         [self.pin setCoordinate:self.location.coordinate];
         [self.mapView addAnnotation:self.pin];
         
-        [self.locationManager startUpdatingLocation];
+        [[YTLocationManager sharedManager] startUpdatingLocation];
         [self enableDisableCancelButton];
     }
 }
@@ -90,7 +91,7 @@
     self.location = nil;
     [self.mapView removeAnnotation:self.pin];
     [self enableDisableCancelButton];
-    [self.locationManager stopUpdatingLocation];
+    [[YTLocationManager sharedManager] stopUpdatingLocation];
 }
 
 - (void)enableDisableCancelButton
@@ -102,48 +103,15 @@
     }
 }
 
-- (void)notifyAboutPlace
+- (void)handleLocationNotification:(NSNotification *)notification
 {
-    if (self.isNotified) {
-        return;
-    }
-    
-    self.isNotified = YES;
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    [notification setFireDate:nil];
-    [notification setAlertBody:NSLocalizedString(@"You are there", nil)];
-    notification.soundName = SOUND_NAME;
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     [self.mapView removeAnnotation:self.pin];
-}
-
-- (void)checkIfCoorinatesAreEqual:(CLLocation *)currentLocation
-{
-    if (self.location) {
-        NSInteger distance = [currentLocation distanceFromLocation:self.location];
-
-        if (distance <= COORDINATES_DELTA) {
-            if (self.isNotified) {
-                return;
-            }
-            [self notifyAboutPlace];
-        }
-    }
 }
 
 //for upside down orientation support
 - (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
-}
-
-#pragma mark - CLLocation methods
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-    CLLocation *location = [locations lastObject];
-    
-    [self checkIfCoorinatesAreEqual:location];
 }
 
 @end

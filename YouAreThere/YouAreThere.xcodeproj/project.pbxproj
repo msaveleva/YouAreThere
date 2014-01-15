@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F0181091886F37E00087F6F /* YTLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0181081886F37E00087F6F /* YTLocationManager.m */; };
 		3F28215F184B536D00625362 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F28215E184B536D00625362 /* Foundation.framework */; };
 		3F282161184B536D00625362 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F282160184B536D00625362 /* CoreGraphics.framework */; };
 		3F282163184B536D00625362 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F282162184B536D00625362 /* UIKit.framework */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F0181071886F37E00087F6F /* YTLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTLocationManager.h; sourceTree = "<group>"; };
+		3F0181081886F37E00087F6F /* YTLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTLocationManager.m; sourceTree = "<group>"; };
 		3F28215B184B536D00625362 /* YouAreThere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouAreThere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F28215E184B536D00625362 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3F282160184B536D00625362 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -93,6 +96,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F0181041886F32400087F6F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3F282173184B536D00625362 /* YTViewController.h */,
+				3F282174184B536D00625362 /* YTViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3F0181051886F32E00087F6F /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				3FF74A4018608F20006E70DE /* Sound.caf */,
+			);
+			name = Media;
+			sourceTree = "<group>";
+		};
+		3F0181061886F33800087F6F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3F0181071886F37E00087F6F /* YTLocationManager.h */,
+				3F0181081886F37E00087F6F /* YTLocationManager.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		3F282152184B536D00625362 = {
 			isa = PBXGroup;
 			children = (
@@ -128,13 +157,13 @@
 		3F282164184B536D00625362 /* YouAreThere */ = {
 			isa = PBXGroup;
 			children = (
+				3F0181051886F32E00087F6F /* Media */,
+				3F0181061886F33800087F6F /* Model */,
+				3F0181041886F32400087F6F /* ViewControllers */,
 				3FD53CC01852581000C6F563 /* Localizable.strings */,
-				3FF74A4018608F20006E70DE /* Sound.caf */,
 				3F28216D184B536D00625362 /* YTAppDelegate.h */,
 				3F28216E184B536D00625362 /* YTAppDelegate.m */,
 				3F282170184B536D00625362 /* Main.storyboard */,
-				3F282173184B536D00625362 /* YTViewController.h */,
-				3F282174184B536D00625362 /* YTViewController.m */,
 				3F282176184B536D00625362 /* Images.xcassets */,
 				3F282165184B536D00625362 /* Supporting Files */,
 			);
@@ -277,6 +306,7 @@
 				3F282175184B536D00625362 /* YTViewController.m in Sources */,
 				3F28216B184B536D00625362 /* main.m in Sources */,
 				3F28216F184B536D00625362 /* YTAppDelegate.m in Sources */,
+				3F0181091886F37E00087F6F /* YTLocationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
