@@ -15,7 +15,4 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
-- (void)notifyAboutPlace;
-- (void)checkIfCoorinatesAreEqual:(CLLocation *)currentLocation;
-
 @end

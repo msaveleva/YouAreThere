@@ -6,12 +6,16 @@
 //  Copyright (c) 2013 Maria Saveleva. All rights reserved.
 //
 
+#define google_API_key @"AIzaSyAsplJT645yEiaYAQax9-2XSLFdwJsBY8w"
+
 #import "YTAppDelegate.h"
 
 @implementation YTAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [GMSServices provideAPIKey:google_API_key];
+    
     return YES;
 }
 							
