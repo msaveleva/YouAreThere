@@ -17,12 +17,16 @@
 @property (nonatomic, strong) MKPointAnnotation *pin;
 @property (nonatomic, strong) CLLocation *location;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UIView *menuView;
 
 
 - (IBAction)saveDestinationLoc:(id)sender;
 - (IBAction)cancelNotification:(id)sender;
 - (void)enableDisableCancelButton;
+- (IBAction)changeMapView:(id)sender;
 - (void)handleLocationNotification:(NSNotification *)notification;
+- (void)setupGoogleMapView;
+- (void)setupAppleMapView;
 
 @end
 
@@ -32,9 +36,11 @@
 {
     [super viewDidLoad];
     
-    self.mapView.userTrackingMode = MKUserTrackingModeFollow;
+//    [self setupAppleMapView];
+    self.mapView.alpha = 0;
+    [self setupGoogleMapView];
+    
     self.location = nil;
-    self.pin = [[MKPointAnnotation alloc] init];
     
     [self enableDisableCancelButton];
     [self.cancelButton setTitle:NSLocalizedString(@"Cancel notification", nil)
@@ -99,6 +105,9 @@
     }
 }
 
+- (IBAction)changeMapView:(id)sender {
+}
+
 - (void)handleLocationNotification:(NSNotification *)notification
 {
     [self.mapView removeAnnotation:self.pin];
@@ -108,6 +117,41 @@
 - (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
+}
+
+- (void)setupAppleMapView
+{
+    [self.googleMapView removeObserver:self forKeyPath:@"myLocation"];
+    
+    self.mapView.userTrackingMode = MKUserTrackingModeFollow;
+    self.pin = [[MKPointAnnotation alloc] init];
+}
+
+- (void)setupGoogleMapView
+{
+    self.googleMapView = [[GMSMapView alloc] init];
+    self.googleMapView.myLocationEnabled = YES;
+    [self.googleMapView addObserver:self
+                         forKeyPath:@"myLocation"
+                            options:NSKeyValueObservingOptionNew
+                            context:nil];
+    self.googleMapView.frame = self.view.frame;
+
+    [self.view addSubview:self.googleMapView];
+    [self.googleMapView addSubview:self.menuView];
+
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"myLocation"] && [object isKindOfClass:[GMSMapView class]])
+    {
+        [self.googleMapView
+            animateToCameraPosition:[GMSCameraPosition
+                                     cameraWithLatitude:self.googleMapView.myLocation.coordinate.latitude
+                                     longitude:self.googleMapView.myLocation.coordinate.longitude
+                                     zoom:6]];
+    }
 }
 
 @end
