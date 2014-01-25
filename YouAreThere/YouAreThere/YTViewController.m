@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Maria Saveleva. All rights reserved.
 //
 
-#define CANCEL_ANIMATION 0.2
-#define LOCATION_DETECTED @"Location detected"
 
 #import "YTViewController.h"
 #import "YTLocationManager.h"
@@ -44,7 +42,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleLocationNotification:)
-                                                 name:LOCATION_DETECTED
+                                                 name:kLocationDetected
                                                object:nil];
 }
 
@@ -78,7 +76,7 @@
         
         [[YTLocationManager sharedManager] startUpdatingLocation];
         [self enableDisableCancelButton];
-        [[YTLocationManager sharedManager] setUserLocation:self.location];
+        [YTLocationManager sharedManager].userLocation = self.location;
     }
 }
 

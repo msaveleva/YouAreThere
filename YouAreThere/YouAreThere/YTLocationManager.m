@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 Maria Saveleva. All rights reserved.
 //
 
-#define COORDINATES_DELTA 50
-#define SOUND_NAME @"Sound.caf"
-#define LOCATION_DETECTED @"Location detected"
+static NSString* const kSoundName = @"Sound.caf";
+static const CGFloat kCoordinatesDelta = 50.0f;
+
+NSString* const kLocationDetected = @"locationDetected";
 
 #import "YTLocationManager.h"
 
 @interface YTLocationManager ()
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, strong) CLLocation *userLocation;
 
 - (void)checkIfCoordinatesAreEqual:(CLLocation *)location;
 - (void)notifyAboutPlace;
@@ -24,7 +24,7 @@
 
 @implementation YTLocationManager
 
-+ (id)sharedManager
++ (instancetype)sharedManager
 {
     static YTLocationManager *sharedManager = nil;
     static dispatch_once_t onceToken;
@@ -53,7 +53,7 @@
         NSInteger distance = [location distanceFromLocation:self.userLocation];
         
         NSLog(@"Distance: %d", distance);
-        if (distance <= COORDINATES_DELTA) {
+        if (distance <= kCoordinatesDelta) {
             [self notifyAboutPlace];
         }
     }
@@ -65,18 +65,13 @@
         UILocalNotification *notification = [[UILocalNotification alloc] init];
         [notification setFireDate:nil];
         [notification setAlertBody:NSLocalizedString(@"You are there", nil)];
-        notification.soundName = SOUND_NAME;
+        notification.soundName = kSoundName;
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:LOCATION_DETECTED object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kLocationDetected object:self];
         
         self.userLocation = nil;
     }
-}
-
-- (void)setUserLocation:(CLLocation *)userLocation
-{
-    _userLocation = userLocation;
 }
 
 #pragma mark - CLLocationManager methods
