@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Maria Saveleva. All rights reserved.
 //
 
-#define COORDINATES_DELTA 50
-#define SOUND_NAME @"Sound.caf"
+static NSString* const kSoundName = @"Sound.caf";
+static const CGFloat kCoordinatesDelta = 50.0f;
 
 NSString* const kLocationDetected = @"locationDetected";
 
@@ -54,7 +54,7 @@ NSString* const kLocationDetected = @"locationDetected";
         NSInteger distance = [location distanceFromLocation:self.userLocation];
         
         NSLog(@"Distance: %d", distance);
-        if (distance <= COORDINATES_DELTA) {
+        if (distance <= kCoordinatesDelta) {
             [self notifyAboutPlace];
         }
     }
@@ -66,7 +66,7 @@ NSString* const kLocationDetected = @"locationDetected";
         UILocalNotification *notification = [[UILocalNotification alloc] init];
         [notification setFireDate:nil];
         [notification setAlertBody:NSLocalizedString(@"You are there", nil)];
-        notification.soundName = SOUND_NAME;
+        notification.soundName = kSoundName;
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:kLocationDetected object:self];
