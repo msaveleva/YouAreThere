@@ -35,9 +35,9 @@
     self.pin = [[MKPointAnnotation alloc] init];
     
     [self enableDisableCancelButton];
-    [self.cancelButton setTitle:NSLocalizedString(@"Cancel notification", nil)
+    [self.cancelButton setTitle:NSLocalizedString(@"cancelNotification", nil)
                        forState:UIControlStateNormal];
-    [self.cancelButton setTitle:NSLocalizedString(@"Tap on the map to set destination", nil)
+    [self.cancelButton setTitle:NSLocalizedString(@"setDestination", nil)
                        forState:UIControlStateDisabled];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -60,8 +60,8 @@
     self.location = [[CLLocation alloc] initWithLatitude:location.latitude
                                                           longitude:location.longitude];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Get there", nil)
-                                                    message:NSLocalizedString(@"Wake you up there?", nil)
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"getThere", nil)
+                                                    message:NSLocalizedString(@"wakeUp", nil)
                                                    delegate:self
                                           cancelButtonTitle:NSLocalizedString(@"No", nil)
                                           otherButtonTitles:NSLocalizedString(@"Yes", nil), nil];

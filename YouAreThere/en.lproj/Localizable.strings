@@ -5,11 +5,11 @@
   Created by Maria Saveleva on 12/6/13.
   Copyright (c) 2013 Maria Saveleva. All rights reserved.
 */
-"Cancel notification" = "Cancel notification";
-"You are there" = "You are there";
+"cancelNotification" = "Cancel notification";
+"youAreThere" = "You are there";
 "Already" = "Already";
-"Tap on the map to set destination" = "Tap on the map to set destination";
+"setDestination" = "Tap on the map to set destination";
 "Yes" = "Yes";
 "No" = "No";
-"Wake you up here?" = "Wake you up there?";
-"Get there" = "Get there";
+"wakeUp" = "Wake you up there?";
+"getThere" = "Get there";
