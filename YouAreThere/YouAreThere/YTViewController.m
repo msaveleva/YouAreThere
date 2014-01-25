@@ -15,6 +15,7 @@
 @property (nonatomic, strong) MKPointAnnotation *pin;
 @property (nonatomic, strong) CLLocation *location;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (nonatomic) BOOL isLocationTrackingEnable;
 
 
 - (IBAction)saveDestinationLoc:(id)sender;
@@ -59,19 +60,27 @@
 
 - (IBAction)saveDestinationLoc:(id)sender
 {
-    
-    CGPoint touchPoint = [sender locationInView:self.mapView];
-    CLLocationCoordinate2D location =
-    [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
-    self.location = [[CLLocation alloc] initWithLatitude:location.latitude
-                                                          longitude:location.longitude];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"getThere", nil)
-                                                    message:NSLocalizedString(@"wakeUp", nil)
-                                                   delegate:self
-                                          cancelButtonTitle:NSLocalizedString(@"No", nil)
-                                          otherButtonTitles:NSLocalizedString(@"Yes", nil), nil];
-    [alert show];
+    if (self.isLocationTrackingEnable) {
+        CGPoint touchPoint = [sender locationInView:self.mapView];
+        CLLocationCoordinate2D location =
+        [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
+        self.location = [[CLLocation alloc] initWithLatitude:location.latitude
+                                                   longitude:location.longitude];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"getThere", nil)
+                                                        message:NSLocalizedString(@"wakeUp", nil)
+                                                       delegate:self
+                                              cancelButtonTitle:NSLocalizedString(@"No", nil)
+                                              otherButtonTitles:NSLocalizedString(@"Yes", nil), nil];
+        [alert show];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"trackingUnavailable", nil)
+                                                        message:NSLocalizedString(@"enableLocationServices", nil)
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil, nil];
+        [alert show];
+    }
 }
 
 #pragma mark - Alerts and notifications handling
@@ -129,6 +138,18 @@
     mapRegion.center = self.mapView.userLocation.coordinate;
     mapRegion.span = MKCoordinateSpanMake(0.2, 0.2);
     [self.mapView setRegion:mapRegion animated:YES];
+}
+
+#pragma mark - MKMapViewDelegate methods
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    self.isLocationTrackingEnable = YES;
+}
+
+- (void)mapView:(MKMapView *)mapView didFailToLocateUserWithError:(NSError *)error
+{
+    self.isLocationTrackingEnable = NO;
 }
 
 @end

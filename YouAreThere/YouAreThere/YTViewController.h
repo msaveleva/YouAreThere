@@ -11,7 +11,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 
-@interface YTViewController : UIViewController <UIAlertViewDelegate>
+@interface YTViewController : UIViewController <UIAlertViewDelegate, MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
