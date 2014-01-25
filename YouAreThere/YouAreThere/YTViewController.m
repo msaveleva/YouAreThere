@@ -68,6 +68,8 @@
     [alert show];
 }
 
+#pragma mark - Alerts and notifications handling
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
@@ -88,6 +90,13 @@
     [[YTLocationManager sharedManager] stopUpdatingLocation];
 }
 
+- (void)handleLocationNotification:(NSNotification *)notification
+{
+    [self.mapView removeAnnotation:self.pin];
+}
+
+#pragma mark - UI handling
+
 - (void)enableDisableCancelButton
 {
     if (!self.location) {
@@ -95,11 +104,6 @@
     } else {
         self.cancelButton.enabled = YES;
     }
-}
-
-- (void)handleLocationNotification:(NSNotification *)notification
-{
-    [self.mapView removeAnnotation:self.pin];
 }
 
 //for upside down orientation support
