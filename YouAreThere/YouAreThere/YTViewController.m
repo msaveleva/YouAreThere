@@ -76,7 +76,7 @@
         
         [[YTLocationManager sharedManager] startUpdatingLocation];
         [self enableDisableCancelButton];
-        [[YTLocationManager sharedManager] setUserLocation:self.location];
+        [YTLocationManager sharedManager].userLocation = self.location;
     }
 }
 

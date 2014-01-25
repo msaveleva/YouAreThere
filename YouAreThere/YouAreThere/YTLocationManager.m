@@ -16,7 +16,6 @@ NSString* const kLocationDetected = @"locationDetected";
 @interface YTLocationManager ()
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, strong) CLLocation *userLocation;
 
 - (void)checkIfCoordinatesAreEqual:(CLLocation *)location;
 - (void)notifyAboutPlace;
@@ -25,7 +24,7 @@ NSString* const kLocationDetected = @"locationDetected";
 
 @implementation YTLocationManager
 
-+ (id)sharedManager
++ (instancetype)sharedManager
 {
     static YTLocationManager *sharedManager = nil;
     static dispatch_once_t onceToken;
@@ -73,11 +72,6 @@ NSString* const kLocationDetected = @"locationDetected";
         
         self.userLocation = nil;
     }
-}
-
-- (void)setUserLocation:(CLLocation *)userLocation
-{
-    _userLocation = userLocation;
 }
 
 #pragma mark - CLLocationManager methods

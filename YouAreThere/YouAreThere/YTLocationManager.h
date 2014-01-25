@@ -13,10 +13,11 @@ extern NSString* const kLocationDetected;
 
 @interface YTLocationManager : NSObject <CLLocationManagerDelegate>
 
-+ (id)sharedManager;
+@property (nonatomic, strong) CLLocation *userLocation;
+
++ (instancetype)sharedManager;
 
 - (void)startUpdatingLocation;
 - (void)stopUpdatingLocation;
-- (void)setUserLocation:(CLLocation *)userLocation;
 
 @end
