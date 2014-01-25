@@ -8,7 +8,8 @@
 
 #define COORDINATES_DELTA 50
 #define SOUND_NAME @"Sound.caf"
-#define LOCATION_DETECTED @"Location detected"
+
+static NSString* const kLocationDetected = @"locationDetected";
 
 #import "YTLocationManager.h"
 
@@ -68,7 +69,7 @@
         notification.soundName = SOUND_NAME;
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:LOCATION_DETECTED object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kLocationDetected object:self];
         
         self.userLocation = nil;
     }
