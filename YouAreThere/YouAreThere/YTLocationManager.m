@@ -52,7 +52,7 @@ NSString* const kLocationDetected = @"locationDetected";
     if (self.userLocation) {
         NSInteger distance = [location distanceFromLocation:self.userLocation];
         
-        NSLog(@"Distance: %d", distance);
+        NSLog(@"Distance: %d", (int)distance);
         if (distance <= kCoordinatesDelta) {
             [self notifyAboutPlace];
         }
@@ -64,7 +64,7 @@ NSString* const kLocationDetected = @"locationDetected";
     if (self.userLocation) {
         UILocalNotification *notification = [[UILocalNotification alloc] init];
         [notification setFireDate:nil];
-        [notification setAlertBody:NSLocalizedString(@"You are there", nil)];
+        [notification setAlertBody:NSLocalizedString(@"youAreThere", nil)];
         notification.soundName = kSoundName;
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
         

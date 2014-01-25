@@ -35,9 +35,9 @@
     self.pin = [[MKPointAnnotation alloc] init];
     
     [self enableDisableCancelButton];
-    [self.cancelButton setTitle:NSLocalizedString(@"Cancel notification", nil)
+    [self.cancelButton setTitle:NSLocalizedString(@"cancelNotification", nil)
                        forState:UIControlStateNormal];
-    [self.cancelButton setTitle:NSLocalizedString(@"Tap on the map to set destination", nil)
+    [self.cancelButton setTitle:NSLocalizedString(@"setDestination", nil)
                        forState:UIControlStateDisabled];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -60,13 +60,15 @@
     self.location = [[CLLocation alloc] initWithLatitude:location.latitude
                                                           longitude:location.longitude];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Get there", nil)
-                                                    message:NSLocalizedString(@"Wake you up there?", nil)
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"getThere", nil)
+                                                    message:NSLocalizedString(@"wakeUp", nil)
                                                    delegate:self
                                           cancelButtonTitle:NSLocalizedString(@"No", nil)
                                           otherButtonTitles:NSLocalizedString(@"Yes", nil), nil];
     [alert show];
 }
+
+#pragma mark - Alerts and notifications handling
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -88,6 +90,13 @@
     [[YTLocationManager sharedManager] stopUpdatingLocation];
 }
 
+- (void)handleLocationNotification:(NSNotification *)notification
+{
+    [self.mapView removeAnnotation:self.pin];
+}
+
+#pragma mark - UI handling
+
 - (void)enableDisableCancelButton
 {
     if (!self.location) {
@@ -95,11 +104,6 @@
     } else {
         self.cancelButton.enabled = YES;
     }
-}
-
-- (void)handleLocationNotification:(NSNotification *)notification
-{
-    [self.mapView removeAnnotation:self.pin];
 }
 
 //for upside down orientation support

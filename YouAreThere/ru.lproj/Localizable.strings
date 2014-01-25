@@ -5,11 +5,11 @@
   Created by Maria Saveleva on 12/6/13.
   Copyright (c) 2013 Maria Saveleva. All rights reserved.
 */
-"Cancel notification" = "Отменить сигнал";
-"You are there" = "Вы на месте";
+"cancelNotification" = "Отменить сигнал";
+"youAreThere" = "Вы на месте";
 "Already" = "Уже";
-"Tap on the map to set destination" = "Куда нужно попасть?";
+"setDestination" = "Куда нужно попасть?";
 "Yes" = "Да";
 "No" = "Нет";
-"Wake you up there?" = "Разбудить, когда приедем?";
-"Get there" = "Попасть сюда";
+"wakeUp" = "Разбудить, когда приедем?";
+"getThere" = "Попасть сюда";
