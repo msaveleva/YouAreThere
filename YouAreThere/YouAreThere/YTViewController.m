@@ -21,6 +21,8 @@
 - (IBAction)cancelNotification:(id)sender;
 - (void)enableDisableCancelButton;
 - (void)handleLocationNotification:(NSNotification *)notification;
+- (void)handleAppDidBecomeActive:(NSNotification *)notification;
+- (void)zoomToUserLocation;
 
 @end
 
@@ -43,6 +45,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleLocationNotification:)
                                                  name:kLocationDetected
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleAppDidBecomeActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification
                                                object:nil];
 }
 
@@ -95,6 +101,11 @@
     [self.mapView removeAnnotation:self.pin];
 }
 
+- (void)handleAppDidBecomeActive:(NSNotification *)notification
+{
+    [self zoomToUserLocation];
+}
+
 #pragma mark - UI handling
 
 - (void)enableDisableCancelButton
@@ -110,6 +121,14 @@
 - (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
+}
+
+- (void)zoomToUserLocation
+{
+    MKCoordinateRegion mapRegion;
+    mapRegion.center = self.mapView.userLocation.coordinate;
+    mapRegion.span = MKCoordinateSpanMake(0.2, 0.2);
+    [self.mapView setRegion:mapRegion animated:YES];
 }
 
 @end
