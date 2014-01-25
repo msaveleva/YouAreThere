@@ -13,3 +13,5 @@
 "No" = "No";
 "wakeUp" = "Wake you up there?";
 "getThere" = "Get there";
+"trackingUnavailable" = "Can't find your location";
+"enableLocationServices" = "Please enable location tracking for this app";
