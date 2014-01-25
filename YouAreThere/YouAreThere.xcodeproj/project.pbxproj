@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3F0181091886F37E00087F6F /* YTLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0181081886F37E00087F6F /* YTLocationManager.m */; };
-		3F216AEA188C41FF009E8DF3 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F216AE9188C41FF009E8DF3 /* GoogleMaps.framework */; };
-		3F216AEC188C4250009E8DF3 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3F216AEB188C4250009E8DF3 /* GoogleMaps.bundle */; };
 		3F28215F184B536D00625362 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F28215E184B536D00625362 /* Foundation.framework */; };
 		3F282161184B536D00625362 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F282160184B536D00625362 /* CoreGraphics.framework */; };
 		3F282163184B536D00625362 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F282162184B536D00625362 /* UIKit.framework */; };
@@ -39,6 +37,8 @@
 		3F305282188EB0700060C450 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F305281188EB0700060C450 /* SystemConfiguration.framework */; };
 		3F4AA67B186D824000FD84DC /* Sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3FF74A4018608F20006E70DE /* Sound.caf */; };
 		3FD53CBE1852581000C6F563 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FD53CC01852581000C6F563 /* Localizable.strings */; };
+		AC5F99151893A44700F441F0 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AC5F99141893A44700F441F0 /* GoogleMaps.bundle */; };
+		AC5F99171893A44C00F441F0 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC5F99161893A44C00F441F0 /* GoogleMaps.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +54,6 @@
 /* Begin PBXFileReference section */
 		3F0181071886F37E00087F6F /* YTLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTLocationManager.h; sourceTree = "<group>"; };
 		3F0181081886F37E00087F6F /* YTLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTLocationManager.m; sourceTree = "<group>"; };
-		3F216AE9188C41FF009E8DF3 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = YouAreThere/GoogleMaps.framework; sourceTree = "<group>"; };
-		3F216AEB188C4250009E8DF3 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = YouAreThere/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		3F28215B184B536D00625362 /* YouAreThere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouAreThere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F28215E184B536D00625362 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3F282160184B536D00625362 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -94,6 +92,8 @@
 		3FD53CC11852581A00C6F563 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3FD53CC21852581B00C6F563 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3FF74A4018608F20006E70DE /* Sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sound.caf; sourceTree = "<group>"; };
+		AC5F99141893A44700F441F0 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		AC5F99161893A44C00F441F0 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,9 +113,9 @@
 				3F282194184B53BD00625362 /* CoreLocation.framework in Frameworks */,
 				3F305270188EB02C0060C450 /* CoreData.framework in Frameworks */,
 				3F30526E188EB0260060C450 /* AVFoundation.framework in Frameworks */,
-				3F216AEA188C41FF009E8DF3 /* GoogleMaps.framework in Frameworks */,
 				3F282196184B5BAF00625362 /* MapKit.framework in Frameworks */,
 				3F282161184B536D00625362 /* CoreGraphics.framework in Frameworks */,
+				AC5F99171893A44C00F441F0 /* GoogleMaps.framework in Frameworks */,
 				3F282163184B536D00625362 /* UIKit.framework in Frameworks */,
 				3F28215F184B536D00625362 /* Foundation.framework in Frameworks */,
 			);
@@ -182,23 +182,23 @@
 		3F28215D184B536D00625362 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3F305281188EB0700060C450 /* SystemConfiguration.framework */,
-				3F30527F188EB0680060C450 /* QuartzCore.framework */,
-				3F30527D188EB0620060C450 /* OpenGLES.framework */,
-				3F30527B188EB05C0060C450 /* libz.dylib */,
-				3F305279188EB0560060C450 /* libicucore.dylib */,
-				3F305277188EB04D0060C450 /* libc++.dylib */,
-				3F305275188EB0440060C450 /* ImageIO.framework */,
-				3F305273188EB03E0060C450 /* GLKit.framework */,
-				3F305271188EB0370060C450 /* CoreText.framework */,
-				3F30526F188EB02C0060C450 /* CoreData.framework */,
 				3F30526D188EB0260060C450 /* AVFoundation.framework */,
-				3F216AE9188C41FF009E8DF3 /* GoogleMaps.framework */,
-				3F216AEB188C4250009E8DF3 /* GoogleMaps.bundle */,
-				3F282195184B5BAF00625362 /* MapKit.framework */,
-				3F282193184B53BD00625362 /* CoreLocation.framework */,
-				3F28215E184B536D00625362 /* Foundation.framework */,
+				3F30526F188EB02C0060C450 /* CoreData.framework */,
 				3F282160184B536D00625362 /* CoreGraphics.framework */,
+				3F282193184B53BD00625362 /* CoreLocation.framework */,
+				3F305271188EB0370060C450 /* CoreText.framework */,
+				3F28215E184B536D00625362 /* Foundation.framework */,
+				3F305273188EB03E0060C450 /* GLKit.framework */,
+				AC5F99141893A44700F441F0 /* GoogleMaps.bundle */,
+				AC5F99161893A44C00F441F0 /* GoogleMaps.framework */,
+				3F305275188EB0440060C450 /* ImageIO.framework */,
+				3F305277188EB04D0060C450 /* libc++.dylib */,
+				3F305279188EB0560060C450 /* libicucore.dylib */,
+				3F30527B188EB05C0060C450 /* libz.dylib */,
+				3F282195184B5BAF00625362 /* MapKit.framework */,
+				3F30527D188EB0620060C450 /* OpenGLES.framework */,
+				3F30527F188EB0680060C450 /* QuartzCore.framework */,
+				3F305281188EB0700060C450 /* SystemConfiguration.framework */,
 				3F282162184B536D00625362 /* UIKit.framework */,
 				3F28217D184B536D00625362 /* XCTest.framework */,
 			);
@@ -334,7 +334,7 @@
 				3F4AA67B186D824000FD84DC /* Sound.caf in Resources */,
 				3FD53CBE1852581000C6F563 /* Localizable.strings in Resources */,
 				3F282177184B536D00625362 /* Images.xcassets in Resources */,
-				3F216AEC188C4250009E8DF3 /* GoogleMaps.bundle in Resources */,
+				AC5F99151893A44700F441F0 /* GoogleMaps.bundle in Resources */,
 				3F282169184B536D00625362 /* InfoPlist.strings in Resources */,
 				3F282172184B536D00625362 /* Main.storyboard in Resources */,
 			);
@@ -501,7 +501,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/mariasaveleva/Documents/GIT\\ Repositories/YouAreThere/YouAreThere/YouAreThere",
+					"$(SRCROOT)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YouAreThere/YouAreThere-Prefix.pch";
@@ -521,7 +521,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/mariasaveleva/Documents/GIT\\ Repositories/YouAreThere/YouAreThere/YouAreThere",
+					"$(SRCROOT)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YouAreThere/YouAreThere-Prefix.pch";
