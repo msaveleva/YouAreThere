@@ -9,7 +9,7 @@
 #define COORDINATES_DELTA 50
 #define SOUND_NAME @"Sound.caf"
 
-static NSString* const kLocationDetected = @"locationDetected";
+NSString* const kLocationDetected = @"locationDetected";
 
 #import "YTLocationManager.h"
 
